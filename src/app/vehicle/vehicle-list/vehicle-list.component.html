@@ -17,4 +17,9 @@
       </tr>
     </tbody>
   </table>
+
+  <div *ngFor="let total of totals | keyvalue">
+    <span>Total {{total.key}}: {{total.value}}</span>
+  </div>
+
 </div>

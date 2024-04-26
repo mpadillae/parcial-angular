@@ -10,6 +10,7 @@ import { VehicleService } from '../vehicle.service';
 export class VehicleListComponent implements OnInit {
 
   vehicles: Array<Vehicle> = []; 
+  totals = new Map<string, number>(); 
 
   constructor(private vehicleService: VehicleService) { }
 
@@ -19,8 +20,20 @@ export class VehicleListComponent implements OnInit {
 
   getVehicles(): void {
     this.vehicleService.getVehicles().subscribe((vehicles) => {
+      this.totals.clear();
       this.vehicles = vehicles;
+      this.getTotals(vehicles);
     });
+  }
+
+  getTotals(vehicles: Array<Vehicle>) {
+    this.totals = vehicles.reduce((result: any, vehicle: Vehicle) => {
+      if (!result[vehicle["marca"]]) { 
+        result[vehicle["marca"]] = 0; 
+      }
+      result[vehicle["marca"]] += 1;
+      return result;
+    }, {});
   }
 
 }
