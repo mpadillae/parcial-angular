@@ -9,11 +9,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td class="name">1</td>
-        <td class="nationality">Renault</td>
-        <td class="nationality">Kangoo</td>
-        <td class="nationality">2017</td>
+      <tr *ngFor="let vehicle of vehicles">
+        <td class="id" style="font-weight: bold;">{{vehicle.id}}</td>
+        <td class="marca">{{vehicle.marca}}</td>
+        <td class="linea">{{vehicle.linea}}</td>
+        <td class="model">{{vehicle.modelo}}</td>
       </tr>
     </tbody>
   </table>
